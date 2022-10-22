@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>TODO</title>
+  </head>
+  <body> 
+    <!-- navbar -->
+    <nav class="navbar navbar-light bg-info fixed-top"> 
+        <div class="container-fluid">
+          <a class="navbar-brand" style="font-family: cursive;" href="#">To Do List</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" style="font-family: cursive;" id="offcanvasNavbarLabel">Main Menu</h5>
+              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active"  style="font-family: cursive;" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"  style="font-family: cursive;" href="task">Task</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" style="font-family: cursive;" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Tasks
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                    <li><a class="dropdown-item" style="font-family: cursive;" href="#">Action</a></li>
+                    <li><a class="dropdown-item" style="font-family: cursive;" href="#">Another action</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" style="font-family: cursive;" href="#">Something else here</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <form class="d-flex">
+                <input class="form-control me-2" style="font-family: cursive;" qtype="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" style="font-family: cursive;" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav> 
+
+      <br><br>
+
+      {% if success  %}  
+     <div class="alert alert-success alert-dismissible fade show"  style="font-family: cursive;" role="alert">
+      Your Task has been added Successfuly {{url}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+       {% endif %}
+
+<br>
+<h4 class="text-center " style="font-family: cursive;">
+    ADD Task
+</h4>
+
+
+    <!-- form -->
+      <div class="container my-3" style="font-family: cursive;">
+        <form  action="/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <div class="row mb-3">
+              <label for="title"  class="col-sm-2 col-form-label">Enter Title</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="title" name="title">
+              </div>
+            </div>
+            <div class="row mb-3">
+                <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="desc" name="desc"></textarea>
+                    <label for="floatingTextarea" id="desc1" name="desc1">Description</label>
+                  </div>
+            </div>
+            <fieldset class="row mb-3">
+              <legend class="col-form-label col-sm-2 pt-0">Set Your prefernece</legend>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" >
+                  <label class="form-check-label" for="gridRadios1">
+                    High
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                  <label class="form-check-label" for="gridRadios2">
+                    Medium
+                  </label>
+                </div>
+                <div class="form-check disabled">
+                  <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" checked>
+                  <label class="form-check-label" for="gridRadios3">
+                   Low
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+
+            <p>{{ form.non_field_errors }}</p>
+
+            <p>{{ form.bfile.label_tag }} {{ form.bfile.help_text }}</p>
+
+            <p>
+                {{ form.bfile.errors }}
+                {{ form.bfile }}
+            </p>
+           
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+      </div>
+    
+
+      <footer class="footer bg-info fixed-bottom pd-8 my-0">
+        <p class="text-center">
+          Copyright 2020 &copy; | All rights reserved
+        </p>
+      </footer>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
